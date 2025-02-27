@@ -15,4 +15,25 @@ public class LibraryDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    public <T> void update(T entity) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public <T> void delete(T entity) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(entity));
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public <T> T find(Class<T> entityClass, Object id) {
+        EntityManager em = emf.createEntityManager();
+        return em.find(entityClass, id);
+    }
 }

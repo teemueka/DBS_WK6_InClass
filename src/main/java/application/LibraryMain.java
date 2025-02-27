@@ -45,5 +45,26 @@ public class LibraryMain {
         dao.save(borrowedBook1);
         dao.save(borrowedBook2);
         dao.save(borrowedBook3);
+
+        // test rest of the CRUD methods
+
+        // UPDATE
+        student1.setName("student1updated");
+        book1.setTitle("book1updated");
+        author1.setName("author1updated");
+        dao.update(student1);
+        dao.update(book1);
+        dao.update(author1);
+
+        // READ
+        System.out.println(dao.find(Student.class, student1.getId()).getName());
+        System.out.println(dao.find(Book.class, book1.getId()).getTitle());
+        System.out.println(dao.find(Author.class, author1.getId()).getName());
+
+        // DELETE
+        dao.delete(student2);
+        dao.delete(book2);
+        dao.delete(author2);
+
     }
 }
